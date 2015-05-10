@@ -96,6 +96,13 @@ module.exports = function(options) {
             .replace(/\.css$/, '.scss'));
         sassDir  = dirname(sassPath);
       }
+      
+      // Ignore ENOENT to fall through as 404
+      var error = function(err) {
+        next('ENOENT' == err.code
+          ? null
+          : err);
+      };
 
       if (debug) {
         log('source', sassPath);
