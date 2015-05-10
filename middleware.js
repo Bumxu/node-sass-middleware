@@ -248,3 +248,10 @@ function log(key, val) {
 function logError(message) {
   log('error', '\x07\x1B[31m' + message + '\x1B[91m');
 }
+
+// Ignore ENOENT to fall through as 404
+var error = function(err) {
+    next('ENOENT' == err.code
+        ? null
+        : err);
+    };
