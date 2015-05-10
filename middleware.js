@@ -250,7 +250,7 @@ function logError(message) {
 }
 
 // Ignore ENOENT to fall through as 404
-var error = function(err) {
+function error(err) {
     next('ENOENT' == err.code
         ? null
         : err);
